@@ -1,0 +1,67 @@
+#calc-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 75px 50px 50px 50px 50px;
+    height: 500px;
+    width: 300px;
+    grid-template-areas: 'display display display display'
+                         'seven-btn eight-btn nine-btn plus-btn'
+                         'four-btn five-btn six-btn minus-btn'
+                         'one-btn two-btn three-btn multiply-btn'
+                         'clear-btn zero-btn divide-btn equal-btn';
+}
+
+#display{
+    grid-area: display;
+    background-color: aquamarine;
+    width:100%;
+    height: 100%;
+}
+#one-btn{
+    grid-area: one-btn;
+}
+#two-btn{
+    grid-area: two-btn;
+}
+#three-btn{
+    grid-area: three-btn;
+}
+#four-btn{
+    grid-area: four-btn;
+}
+#five-btn{
+    grid-area: five-btn;
+}
+#six-btn{
+    grid-area: six-btn;
+}
+#seven-btn{
+    grid-area: seven-btn;
+}
+#eight-btn{
+    grid-area: eight-btn;
+}
+#nine-btn{
+    grid-area: nine-btn;
+}
+#zero-btn{
+    grid-area: zero-btn;
+}
+#plus-btn{
+    grid-area: plus-btn;
+}
+#minus-btn{
+    grid-area: minus-btn;
+}
+#multiply-btn{
+    grid-area: multiply-btn;
+}
+#divide-btn{
+    grid-area: divide-btn;
+}
+#equal-btn{
+    grid-area: equal-btn;
+}
+#clear-btn{
+    grid-area: clear-btn;
+}

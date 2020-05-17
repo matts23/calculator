@@ -31,54 +31,60 @@ const divide = function(...num){
     return answer;
 };
 
-/*
-const operate = function(callback, a, b){
-    return callback(a,b);
-}
-*/
 
-const parseDisplay = function(x){
+const evaluateExpression = function(x){
 
-    let problem = x.split(' ');
-    let currentProblem = [...problem]
+    let screenText = x.split(' ');
+    let operationOrder = ['×','÷','+','-'];
     let answer = 0;
 
-    while(problem.length>1){  
-        for(let i=0; i<problem.length;i++){
+    while(screenText.length>1){
 
-            if(problem[i]==='×'){
-                answer = multiply(+problem[i-1],+problem[i+1]);
-                problem.splice(i-1,3,answer);
-                console.log(problem);
-                //displayDiv.textContent = answer;
-            }
-            else if(problem[i]==='/'){
-                answer = divide(+problem[i-1],+problem[i+1]);
-                problem.splice(i-1,3,answer);
-                //displayDiv.textContent = answer;
-            }
-            else if(problem[i]==='+'){
-                answer = add(+problem[i-1],+problem[i+1]);
-                problem.splice(i-1,3,answer);
-                //displayDiv.textContent = answer;
-            }
-            else if(problem[i]==='-'){
-                answer = subtract(+problem[i-1],+problem[i+1]);
-                problem.splice(i-1,3,answer);
-                //displayDiv.textContent = answer;
+        for(let j=0;j<operationOrder.length; j++){
+            console.log('operation order: '+ operationOrder[j])
+            for(let i=0; i<screenText.length; i++){
+                console.log('screen text: '+screenText[i])
+
+                if(operationOrder[j]===screenText[i]){
+
+                    if(screenText[i]==='×'){
+                        answer = multiply(+screenText[i-1],+screenText[i+1]);
+                        screenText.splice(i-1,3,answer);
+                        console.log('multiply');
+                        console.log(screenText);
+                    }
+                    else if(screenText[i]==='÷'){
+                        answer = divide(+screenText[i-1],+screenText[i+1]);
+                        screenText.splice(i-1,3,answer);
+                        console.log('divide');
+                        console.log(screenText);
+                    }
+                    else if(screenText[i]==='+'){
+                        answer = add(+screenText[i-1],+screenText[i+1]);
+                        screenText.splice(i-1,3,answer);
+                        console.log('add');
+                        console.log(screenText);
+                    }
+                    else if(screenText[i]==='-'){
+                        answer = subtract(+screenText[i-1],+screenText[i+1]);
+                        screenText.splice(i-1,3,answer);
+                        console.log('divide');
+                        console.log(screenText);
+                    }
+                }
             }
         }
     }
     displayDiv.textContent = answer;
+    console.log(screenText);
 }
 
-//parseDisplay(displayDiv.textContent);
 
 const equalBtn = document.querySelector('#equal-btn');
 
 equalBtn.addEventListener('click', ()=>{
-    console.log(parseDisplay(displayDiv.textContent));
-})
+    evaluateExpression(displayDiv.textContent);
+});
 
 
 const numButtons = document.querySelectorAll('.number');
@@ -112,6 +118,6 @@ const clearBtn = document.querySelector('#clear-btn');
 
 clearBtn.addEventListener('click', ()=>{
     displayDiv.textContent = '0';
-})
+});
 
 

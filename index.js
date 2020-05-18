@@ -1,5 +1,8 @@
-const displayDiv = document.querySelector('#display');
+const displayDiv = document.querySelector('#current-equation');
+const finalAnswer = document.querySelector('#answer');
 displayDiv.textContent = 0;
+finalAnswer.textContent = 0;
+
 
 
 const add = function(...num){
@@ -41,42 +44,33 @@ const evaluateExpression = function(x){
     while(screenText.length>1){
 
         for(let j=0;j<operationOrder.length; j++){
-            console.log('operation order: '+ operationOrder[j])
+           
             for(let i=0; i<screenText.length; i++){
-                console.log('screen text: '+screenText[i])
 
                 if(operationOrder[j]===screenText[i]){
 
                     if(screenText[i]==='×'){
                         answer = multiply(+screenText[i-1],+screenText[i+1]);
                         screenText.splice(i-1,3,answer);
-                        console.log('multiply');
-                        console.log(screenText);
                     }
                     else if(screenText[i]==='÷'){
                         answer = divide(+screenText[i-1],+screenText[i+1]);
                         screenText.splice(i-1,3,answer);
-                        console.log('divide');
-                        console.log(screenText);
                     }
                     else if(screenText[i]==='+'){
                         answer = add(+screenText[i-1],+screenText[i+1]);
                         screenText.splice(i-1,3,answer);
-                        console.log('add');
-                        console.log(screenText);
                     }
                     else if(screenText[i]==='-'){
                         answer = subtract(+screenText[i-1],+screenText[i+1]);
                         screenText.splice(i-1,3,answer);
-                        console.log('divide');
-                        console.log(screenText);
                     }
                 }
             }
         }
     }
-    displayDiv.textContent = answer;
-    console.log(screenText);
+    //displayDiv.textContent = answer;
+    finalAnswer.textContent=answer;
 }
 
 
@@ -110,6 +104,11 @@ operatorButtons.forEach((button)=> {
         if(equation[equation.length-1].match(/[0-9]/)){
             displayDiv.textContent += ` ${button.value} `;
         }
+        
+        if(finalAnswer.textContent !== '0' && displayDiv.textContent !== '0'){
+                displayDiv.textContent = finalAnswer.textContent += ` ${button.value} `;
+                finalAnswer.textContent = '0';
+        } 
     })
 });
 
@@ -118,6 +117,7 @@ const clearBtn = document.querySelector('#clear-btn');
 
 clearBtn.addEventListener('click', ()=>{
     displayDiv.textContent = '0';
+    finalAnswer.textContent = '0';
 });
 
 
